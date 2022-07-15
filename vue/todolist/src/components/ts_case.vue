@@ -2,7 +2,6 @@
   <button type="button" @click="count++">count is: {{ count }}</button>
   <button type="button" @click="$emit('change', 123)">emit change</button>
   <button type="button" @click="$emit('udpate', 'aaa')">emit update</button>
- 
 </template>
 
 <script setup lang="ts">
@@ -20,7 +19,7 @@ const props = defineProps<Props>()
 // 2. emits 定义方式
 interface Emits {
   (e: 'change', id: number): void
-  (e: 'udpate', value:string):void
+  (e: 'udpate', value: string): void
 }
 const emit = defineEmits<Emits>()
 
@@ -29,7 +28,7 @@ const emit = defineEmits<Emits>()
 //  3.1 自动推断为 Ref<Number>
 const count = ref(0)
 //  3.2 手动指定
-const num_or_string: Ref<Number|string> = ref(0)
+const num_or_string: Ref<Number | string> = ref(0)
 
 
 // 4. reactive
@@ -38,16 +37,16 @@ const book = reactive({ title: 'Vue 3 Guide' })
 //   4.2 手动指定
 interface Book {
   title: string,
-  num?:number
+  num?: number
 }
-const book2:Book = reactive({ title: 'Vue 3 Guide' })
+const book2: Book = reactive({ title: 'Vue 3 Guide' })
 
 
 // 5. computed
 //   5.1 自动推断 ComputedRef<number>
 const double = computed(() => count.value * 2)
 //   5.2 手动指定
-const double2 = computed<number>(()=> count.value * 2)
+const double2 = computed<number>(() => count.value * 2)
 
 
 // 6. event handler
@@ -62,6 +61,7 @@ function handleChanged2(evt: Event) {
 
 // TODO 还有 provie/inject 等好几个.
 // https://vuejs.org/guide/typescript/composition-api.html#typing-provide-inject
+
 
 
 </script>

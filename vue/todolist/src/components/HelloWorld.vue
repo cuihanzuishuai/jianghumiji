@@ -6,7 +6,7 @@
       <li v-for="(todo, i) in todos" :key="todo.title">
         <input type="checkbox" v-model="todo.done" />
         <span :class="{ done: todo.done }">{{ todo.title }}</span>
-        <span class="remove-btn" @click="removeTodo(i)"> X</span>
+        <span class="remove-btn" @click="removeTodo(i)">X</span>
       </li>
     </div>
     <div v-else>暂无数据</div>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue"
+import { ref, Ref, computed } from "vue"
 
 interface Todo {
   title: string,
@@ -31,7 +31,7 @@ const todos = ref<Todo[]>([{ title: '吃饭', done: true }, { title: '睡觉', d
 
 const showModal = ref(false)
 
-function addTodo () {
+function addTodo() {
   if (!title.value) {
     showModal.value = true
     setTimeout(() => {
@@ -45,7 +45,7 @@ function addTodo () {
   })
   title.value = ''
 }
-function clear () {
+function clear() {
   todos.value = todos.value.filter((v) => !v.done)
 }
 const active = computed(() => {
@@ -53,16 +53,16 @@ const active = computed(() => {
 })
 const all = computed(() => todos.value.length)
 const allDone = computed({
-  get: function () {
+  get: function() {
     return active.value === todos.value.length
   },
-  set: function (value: boolean) {
+  set: function(value: boolean) {
     todos.value.forEach((todo: Todo) => {
       todo.done = value
     })
   },
 })
-function removeTodo (i: number) {
+function removeTodo(i: number) {
   todos.value.splice(i, 1)
 }
 </script>
