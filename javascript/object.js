@@ -1,6 +1,6 @@
-// const obj1 = {
-//   name: 'cc'
-// }
+const obj1 = {
+  name: 'cc'
+}
 // Object.defineProperty(obj1, 'name', {
 //   // writable: false,
 //   value: 'ch'
@@ -11,7 +11,7 @@
 // // })
 
 // delete obj1.name
-// // console.log('obj1', obj1)
+// console.log('obj1', obj1)
 
 // const obj2 = {}
 // Object.defineProperties(obj2, {
@@ -71,12 +71,76 @@
 // console.log(aa)
 // console.log(bb)
 
-let person = {
-  name: 'c',
-  age: 3
+// let person = {
+//   name: 'c',
+//   age: 3
+// }
+
+// let { name: personCopy.name, age: personCopy.age } = person
+
+
+// console.log(personCopy)
+
+const obj5 = {
+  f () {
+    this.foo = 'bar'
+  }
 }
 
-let { name: personCopy.name, age: personCopy.age } = person
+const obj6 = { a: 1, b: 2 }
+// console.log('obj6', obj6.toString())
 
 
-console.log(personCopy)
+// 遍历
+for (i in obj6) {
+  // console.log('i', i)
+}
+// console.log('Object.keys()', Object.keys(obj6))
+// console.log('Object.getOwnPropertyNames()', Object.getOwnPropertyNames(obj6))
+// console.log('Reflect.ownKeys()', Reflect.ownKeys(obj6))
+
+const o = Object.create({ x: 1, y: 2 })
+o.z = 3
+// console.log('o', o)
+
+let { x, ...newObj } = o
+// console.log('x', x)
+// console.log('newObj', newObj)
+let { y, z } = newObj
+
+
+
+
+class C {
+  p = 12;
+  m () { }
+}
+
+let c = new C()
+let clone = { ...c }
+
+// clone.p // 12
+// clone.m() // 报错
+
+
+const obj7 = { a: 1, b: 2 }
+const obj8 = Object.assign({}, obj7)
+const obj9 = { ...obj7 }
+obj7.a = 3
+// console.log('obj8', obj8)
+// console.log('obj9', obj9)
+
+
+// console.log('Object.is()', Object.is(1, '1'))
+
+const entries1 = new Map([
+  ['a', 1],
+  ['b', 2]
+])
+entries2 = Object.fromEntries(entries1)
+// console.log('entries2', entries2)
+
+
+const obj10 = { a: 1, b: 2 }
+console.log('obj10.hasOwnProperty()', obj10.hasOwnProperty('c'))
+console.log('Object.hasOwn()', Object.hasOwn(obj10, 'a'))
